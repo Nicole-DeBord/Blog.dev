@@ -42,7 +42,7 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 | logging them or displaying custom views for specific errors. You may
 | even register several error handlers to handle different types of
 | exceptions. If nothing is returned, the default error view is
-| shown, which includes a detailed stack trace during debug.
+| shown, which includes a detailed stack trace during debug. 
 |
 */
 
@@ -50,6 +50,33 @@ App::error(function(Exception $exception, $code)
 {
 	Log::error($exception);
 });
+
+/*
+|--------------------------------------------------------------------------
+| Application Error Logger
+|--------------------------------------------------------------------------
+|
+| Here we will configure the error logger setup for the application which
+| is built on top of the wonderful Monolog library. By default we will
+| build a basic log file setup which creates a single file for logs.
+|
+*/
+
+Log::useFiles(storage_path().'/logs/laravel.log');
+
+/*
+|--------------------------------------------------------------------------
+| Custom 404 Error Handler
+|--------------------------------------------------------------------------
+|
+| Here I've made a custom 404 handler.
+*/
+
+App::missing(function($exception) {
+	
+    return Response::view('errors.missing', array(), 404);
+});
+
 
 /*
 |--------------------------------------------------------------------------
