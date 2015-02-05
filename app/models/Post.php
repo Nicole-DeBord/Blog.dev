@@ -23,4 +23,29 @@ class Post extends \BaseModel {
 	}
 
 
+	public function renderBody($summary = false) {
+
+		$body = $this->body;
+
+		if ($summary == true) {
+
+			$body = str_limit($body, 250);
+
+		}
+
+		$parsedown = new Parsedown();
+		
+		$body = $parsedown->text($body);
+
+		$config = HTMLPurifier_Config::createDefault();
+
+		$purifier = new HTMLPurifier($config);
+
+		$cleanBody = $purifier->purify($body);
+
+		return $cleanBody;
+
+	}
+
+
 }
