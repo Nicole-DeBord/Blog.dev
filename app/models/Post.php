@@ -14,4 +14,13 @@ class Post extends \BaseModel {
 		'body'  => 'required'
 
 	];
+
+
+	public function user() {
+
+		return $this->belongsTo('User');
+		
+	}
+
+
 }

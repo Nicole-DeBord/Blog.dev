@@ -1,15 +1,16 @@
 @extends('layouts.blog-master')
 
+
 @section('title')
-	Blag!
+	Laravel Blag - Home
 @stop
 
-@section('styling')
+
+@section('css')
 	<style>
 		h1 {
 
 			font-size: 450%;
-		
 		}
 
 		p {
@@ -17,16 +18,13 @@
 			font-size: 120%;
 		}
 
-		#entry {
-			color: blue;
-		}
 	</style>
 @stop
 
+
 @section('greeting')
-
-<h1>Sparkle Glitter Happy Laravel Blog</h1>
-
+	<!-- <h1>Sparkle Glitter Happy Laravel Blog</h1> -->
+	<h1>Laravel Blog: Rainbow Powered!</h1>
 @stop
 
 
@@ -37,12 +35,13 @@
 		<hr>
 		<p class="pull-right">Posted {{{ $post->created_at->diffForHumans() }}}</p>
 		<h3>{{ $post->title }}</h3>
+		<h5>By {{{ $post->user->email }}}</h5>
 		<p>{{ $post->body }}</p>
 
 		<a href="{{{ action('PostsController@show', $post->id) }}}">Read More</a>
 	</article>
 	@endforeach
 
-	{{ $posts->links() }}
+	{{ $posts->appends(array('search' => Input::get('search')))->links() }}
 
 @stop

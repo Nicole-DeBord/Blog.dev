@@ -1,6 +1,7 @@
 @extends('layouts.blog-master')
 
-@section('styling')
+
+@section('css')
 	<style>
 		form {
 			padding: 15px;

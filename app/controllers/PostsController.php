@@ -2,18 +2,48 @@
 
 class PostsController extends \BaseController {
 
+
+	public function __construct() {
+
+		parent::__construct();
+
+		$this->beforeFilter('auth', array('except' => array('index', 'show')));
+
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-	public function index()
-	{	
-		$posts = Post::paginate(4);
+	public function index() {	
+
+		$query = Post::with('user');
+
+
+		if (Input::has('search')) {
+
+			$search = Input::get('search');
+
+			$query->where('title',        'like', '%' . $search . '%');
+
+			$query->orWhereHas('user', function($q) {
+
+				$search = Input::get('search');
+
+				$q->where('email', 'like', '%' . $search . '%');
+
+			});
+
+			$posts = $query->orderBy('created_at', 'desc')->paginate(4);
+
+		} else {
+
+			$posts = Post::paginate(4);
+
+		}
+
 		return View::make('posts.index')->with('posts', $posts);
 
-
-		// return "Navigating to http://blog.dev/posts should return an index of every blog post.";
 	}
 
 
@@ -39,6 +69,7 @@ class PostsController extends \BaseController {
 	public function store()
 	{
 		$post = new Post();
+		$post->user_id = Auth::id();
 		return $this->savePost($post);
 	}
 
@@ -102,7 +133,22 @@ class PostsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		return "Deleting a specific post.";
+		try {
+
+			$post = Post::findOrFail($id);
+
+		} catch (Exception $e) {
+
+			Log::info("User made a bad PostsController requests, id " . $id);
+			App::abort(404);
+
+		}
+
+		$post->delete();
+
+		Session::flash('successMessage', 'Post deleted!');
+
+		return Redirect::action('PostsController@index');
 	}
 
 
@@ -130,5 +176,11 @@ class PostsController extends \BaseController {
 
 			return Redirect::action('PostsController@index');
 		}
+	}
+
+	public function user() {
+
+		return $this->belongsTo('User');
+
 	}
 }

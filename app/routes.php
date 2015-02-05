@@ -11,6 +11,7 @@
 |
 */
 
+// Creates Route to Say Hello Test View:
 
 Route::get('say-hello/{name}/{age}', function($name, $age) {
 
@@ -19,7 +20,7 @@ Route::get('say-hello/{name}/{age}', function($name, $age) {
 });
 
 
-// Dice Roll Game: 
+// Creates Route to Dice Roll Game View: 
 
 Route::get('diceroll/{guess}', function($guess) {
 
@@ -44,17 +45,33 @@ Route::get('diceroll/{guess}', function($guess) {
 });
 
 
+// Blog.dev Root View:
+
 Route::get('/', 'HomeController@showWelcome');
 
 Route::get('say-hello/{name}/{age}', 'HomeController@sayHello');
+
+
+// Resume and Portfolio Views:
 
 Route::get('resume', 'HomeController@getResume');
 
 Route::get('portfolio', 'HomeController@getPortfolio');
 
-Route::resource('posts', 'PostsController');
+
+// National Parks and Whack-a-Pony Views:
 
 Route::get('parks', 'HomeController@getParks');
 
 Route::get('whack', 'HomeController@getWhack');
 
+
+// PostsController Blog Resources Views:
+
+Route::resource('posts', 'PostsController');
+
+// Blog Login/Logout Views: 
+
+Route::get('login', 'HomeController@showLogin');
+Route::post('login', 'HomeController@doLogin');
+Route::get('logout', 'HomeController@doLogout');

@@ -8,58 +8,133 @@
 
 		<link rel="stylesheet" href="/bootstrap/css/bootstrap-cosmo-theme.min.css">
 
-		<link rel="stylesheet" href="/bootstrap/css/bootstrap-sidebar.css">
+		<link rel="stylesheet" href="/css/color-box-vertical.css">
 
-		<link rel="stylesheet" href="/css/color-box.css">
+		<!-- <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"> -->
 
-		@yield('styling')
+		@yield('css')
 
+		<style>
+
+		.container {
+
+			margin-left: 0;
+		}
+		#color-box {
+			
+			padding: 20px;
+
+		}
+		</style>
     </head>
     <body>
 
-	 <div class="row">
+	<nav class="navbar navbar-default">
+	  	<div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    	<div class="navbar-header">
+	      		<button type="button" class="navbar-toggle collapsed pull-right" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+	      		</button>
+	      		<a class="navbar-brand" href="#">Blag</a>
+	    	</div>
 
-	    <div id="wrapper" class="toggle">
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		       
+		        <ul class="nav navbar-nav">
+		        	<li class="active"><a href="{{{ action('PostsController@index') }}}">Home<span class="sr-only">(current)</span></a></li>
+		        	<li><a href="#">Archives</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Other Projects</a></li>
+					<li><a href="#">Contact</a></li>
 
-	        <div id="sidebar-wrapper">
-	            <ul class="sidebar-nav">
-	                <li class="sidebar-brand">
-	                    <a href="#">
-	                        Sparkle On!
-	                    </a>
-	                </li>
-	                <li>
-	                    <a href="#">Blog</a>
-	                </li>
-	                <li>
-	                    <a href="#">Archives</a>
-	                </li>
-	                <li>
-	                    <a href="#">About</a>
-	                </li>
-	                <li>
-	                    <a href="#">Portfolio</a>
-	                </li>
-	                <li>
-	                    <a href="#">Contact</a>
-	                </li>
-	            </ul>
-	        </div>
-	    </div> -->
-	<div class="row">
-	    <div id="wrapper">
-		    <div id="sidebar-wrapper">
-		        <ul class="sidebar-nav">
-		            <li class="sidebar-brand"><a href="#">Home</a></li>
-		            <li><a href="#">Another link</a></li>
-		            <li><a href="#">Next link</a></li>
-		            <li><a href="#">Last link</a></li>
-		        </ul>
-		    </div>
-	    <div id="page-content-wrapper">
-	        <div class="page-content">
+		        	@if (Auth::check())
+					
+					<li><a href="{{{ action('PostsController@create') }}}">New Entry</a></li>
+
+					@endif	
+	
+<!-- 		        	<li class="dropdown">
+		          	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">:( User Console<span class="caret"></span></a>
+
+		          		<ul class="dropdown-menu" role="menu">
+				            <li><a href="{{{ action('PostsController@create') }}}">New Entry</a></li>
+				            <li><a href="#">Another action</a></li>
+				            <li><a href="#">Something else here</a></li>
+				            <li class="divider"></li>
+				            <li><a href="#">Separated link</a></li>
+				            <li class="divider"></li>
+				            <li><a href="#">One more separated link</a></li>
+		          		</ul>
+		       		 </li> -->
+
+		    	</ul>
+
+		    	<form class="navbar-form navbar-left" method="GET" role="search" action="{{{ action('PostsController@index') }}}">
+		    	<div class="form-group">
+		          <input type="text" class="form-control" placeholder="Search" name="search">
+		        </div>
+		        <button type="submit" class="btn btn-default">Submit</button>
+		      	</form>
+
+		      	<ul class="nav navbar-nav navbar-right">
+
+
+			        @if (Auth::check())
+
+					<li><a href="{{{ action('HomeController@doLogout') }}}">Log Out</a></li>
+					
+			        <li class="dropdown">
+	         		 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">User Console<span class="caret"></span></a>
+	         		 	<ul class="dropdown-menu" role="menu">
+				            <li><a href="{{{ action('PostsController@create') }}}">New Entry</a></li>
+				            <li><a href="#">Another action</a></li>
+				            <li><a href="#">Something else here</a></li>
+				            <li class="divider"></li>
+				            <li><a href="#">Separated link</a></li>
+	          			</ul>
+	        		</li>
+
+	        		@else
+
+			        <li><a href="{{{ action('PostsController@create') }}}">Log In</a></li>
+
+					@endif
+
+	     	 	</ul>
+	   		</div><!-- /.navbar-collapse -->
+	    </div><!-- /.container-fluid -->
+	</nav>
+
+
+<!-- 	    <div id="page-content-wrapper">
+	        <div class="page-content"> -->
 	            <div class="container">
 	                <div class="row">
+
+						<div class="col-md-2" id="color-box">
+
+				            <div class="red"></div>
+					
+							<div class="orange"></div>
+						
+							<div class="yellow"></div>
+
+							<div class="green"></div>
+							
+							<div class="blue"></div>
+							
+							<div class="violet"></div>
+	                  
+	        			</div>    
+
+
+
+
 	                    <div class="col-md-10">
 	                        <!-- content of page -->
 		                @if (Session::has('saveMessage'))
@@ -71,6 +146,7 @@
 					    	<div class="alert alert-danger">{{{ Session::get('errorMessage') }}}</div>
 					    @endif
 
+
 						@yield('greeting')
 
 					    @yield('entry')
@@ -78,11 +154,20 @@
 					    @yield('content')
 
 		    			@yield('form')
+
+
 		    			</div>
 	                </div>
 	            </div>
 	        </div>
-	    </div>
-	</div>
+<!-- 	    </div>
+	</div> -->
+
+	<!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
     </body>
 </html>
