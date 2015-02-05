@@ -34,9 +34,16 @@
 	<article>
 		<hr>
 		<p class="pull-right">Posted {{{ $post->created_at->diffForHumans() }}}</p>
+
+		<!-- Post Title -->
 		<h3>{{ $post->title }}</h3>
+
+		<!-- Author Email -->
 		<h5>By {{{ $post->user->email }}}</h5>
-		<p>{{ $post->body }}</p>
+
+		<!-- Body Summary -->
+		<p>{{ $post->renderBody(true) }}</p> 
+		
 
 		<a href="{{{ action('PostsController@show', $post->id) }}}">Read More</a>
 	</article>

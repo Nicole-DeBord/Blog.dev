@@ -8,6 +8,6 @@
 
 <div class="form-group {{{ $errors->has('body') ? 'has-error' : '' }}}">
 	{{ Form::label('body', 'Post Entry') }}
-	{{ Form::textarea('body', Input::old('body'), array('class' => 'form-control')) }}
+	{{ Form::textarea('body', Input::old('body'), array('class' => 'form-control', 'data-provide' => 'markdown')) }}
 	{{ $errors->first('body', '<p class="help-block">:message</p>') }}
 </div>

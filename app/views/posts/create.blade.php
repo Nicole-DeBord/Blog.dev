@@ -2,7 +2,13 @@
 
 
 @section('title')
-	Laravel Blag - Create New Entry
+	Laravel Blag - Create New Entry	
+@stop
+
+@section('top-script')
+
+	<link rel="stylesheet" href="/bootstrap/css/bootstrap-markdown.min.css">
+
 @stop
 
 
@@ -32,7 +38,10 @@
 
 				{{ Form::submit('Create Post', array('class' => 'btn btn-primary')) }}
 			{{ Form::close() }}
-
 		</div>
 	</div>
+@stop
+
+@section('bottom-script')
+	<script src="/bootstrap/js/bootstrap-markdown.js"></script>
 @stop

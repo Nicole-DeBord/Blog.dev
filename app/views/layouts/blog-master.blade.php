@@ -11,7 +11,7 @@
 		<link rel="stylesheet" href="/css/color-box-vertical.css">
 
 		<!-- <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"> -->
-
+		
 		@yield('css')
 
 		<style>
@@ -27,6 +27,7 @@
 		}
 		</style>
 		
+		@yield('top-script')
     </head>
     <body>
 
@@ -164,6 +165,6 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="/bootstrap/js/bootstrap.min.js"></script>
-
+	@yield('bottom-script')
     </body>
 </html>

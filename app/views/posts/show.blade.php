@@ -30,7 +30,7 @@
 		<h5>Blog entry #{{{ $post->id }}} | Authored by {{{ $post->user->email }}}</h5>
 		<h5>Created on {{{ $post->created_at->format('l, F jS Y @ h:i:s A') }}}</h5>
 		<!-- <h5>Last update {{{ $post->updated_at->format('l, F jS Y @ h:i:s A') }}}</h5> --> 
-		<p>{{{ $post->body }}}</p>
+		<p>{{ $post->renderBody(true) }}</p> 
 	</div>
 	<hr>
 
