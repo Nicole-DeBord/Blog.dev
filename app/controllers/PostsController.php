@@ -19,7 +19,6 @@ class PostsController extends \BaseController {
 
 		$query = Post::with('user');
 
-
 		if (Input::has('search')) {
 
 			$search = Input::get('search');
@@ -33,17 +32,11 @@ class PostsController extends \BaseController {
 				$q->where('email', 'like', '%' . $search . '%');
 
 			});
-
-			$posts = $query->orderBy('created_at', 'desc')->paginate(4);
-
-		} else {
-
-			$posts = Post::paginate(4);
-
 		}
 
-		return View::make('posts.index')->with('posts', $posts);
+		$posts = $query->orderBy('created_at', 'desc')->paginate(4);
 
+		return View::make('posts.index')->with('posts', $posts);
 	}
 
 

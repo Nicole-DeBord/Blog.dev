@@ -26,6 +26,7 @@
 
 		}
 		</style>
+		
     </head>
     <body>
 
@@ -111,63 +112,58 @@
 	</nav>
 
 
-<!-- 	    <div id="page-content-wrapper">
-	        <div class="page-content"> -->
-	            <div class="container">
-	                <div class="row">
+    <div class="container">
+        <div class="row">
 
-						<div class="col-md-2" id="color-box">
+			<div class="col-md-2" id="color-box">
 
-				            <div class="red"></div>
-					
-							<div class="orange"></div>
-						
-							<div class="yellow"></div>
+	            <div class="red"></div>
+		
+				<div class="orange"></div>
+			
+				<div class="yellow"></div>
 
-							<div class="green"></div>
-							
-							<div class="blue"></div>
-							
-							<div class="violet"></div>
-	                  
-	        			</div>    
+				<div class="green"></div>
+				
+				<div class="blue"></div>
+				
+				<div class="violet"></div>
+          
+			</div>    
 
 
 
 
-	                    <div class="col-md-10">
-	                        <!-- content of page -->
-		                @if (Session::has('saveMessage'))
-		    				<div class="alert alert-success">{{{ Session::get('saveMessage') }}}</div>
-						@endif
+            <div class="col-md-10">
+                <!-- content of page -->
+            @if (Session::has('saveMessage'))
+				<div class="alert alert-success">{{{ Session::get('saveMessage') }}}</div>
+			@endif
 
 
-					    @if (Session::has('errorMessage'))
-					    	<div class="alert alert-danger">{{{ Session::get('errorMessage') }}}</div>
-					    @endif
+		    @if (Session::has('errorMessage'))
+		    	<div class="alert alert-danger">{{{ Session::get('errorMessage') }}}</div>
+		    @endif
 
 
-						@yield('greeting')
+			@yield('greeting')
 
-					    @yield('entry')
+		    @yield('entry')
 
-					    @yield('content')
+		    @yield('content')
 
-		    			@yield('form')
+			@yield('form')
 
 
-		    			</div>
-	                </div>
-	            </div>
-	        </div>
-<!-- 	    </div>
-	</div> -->
+			</div>
+        </div>
+    </div>
 
 	<!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="/js/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
 
     </body>
 </html>
