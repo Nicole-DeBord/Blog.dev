@@ -47,7 +47,9 @@ Route::get('diceroll/{guess}', function($guess) {
 
 // Blog.dev Root View:
 
-Route::get('/', 'HomeController@showWelcome');
+// Route::get('/', 'HomeController@showWelcome');
+
+Route::get('/', 'HomeController@getPortfolio');
 
 Route::get('say-hello/{name}/{age}', 'HomeController@sayHello');
 
