@@ -15,7 +15,7 @@ class AddUserIdToPosts extends Migration {
 		Schema::table('posts', function($table) {
 
 		    $table->integer('user_id')->unsigned();
-		    $table->foreign('user_id')->references('id')->on('users')->onDelet;
+		    $table->foreign('user_id')->references('id')->on('users')->onDelete;
 		});
 	}
 
